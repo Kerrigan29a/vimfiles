@@ -23,12 +23,8 @@ set nocompatible "Must be first line
 
  "Vundle packages {{{
     "Fugitive {{{
-        Bundle 'tpope/vim-fugitive'
+        "Bundle 'tpope/vim-fugitive'
     "}}}
-    "Gitv {{{
-        Bundle 'gregsexton/gitv'
-    "}}}
-    "Bundle 'mattn/gist-vim'
     "Wombat {{{
         Bundle 'vim-scripts/wombat256.vim'
     "}}}
@@ -38,23 +34,6 @@ set nocompatible "Must be first line
         let g:indent_guides_guide_size = 1
         let g:indent_guides_space_guides = 1
         let g:indent_guides_enable_on_vim_startup = 1
-    "}}}
-    "Vim preview {{{
-        Bundle 'greyblake/vim-preview'
-        "<Leader>P - will open current file converted to HTML in your browser.
-    "}}}
-    "NerdTree {{{
-        Bundle 'scrooloose/nerdtree'
-
-        "Open a NERDTree automatically when vim starts up if no files were specified
-        autocmd vimenter * if !argc() | NERDTree | endif
-        "Close vim if the only window left open is a NERDTree
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-        let NERDTreeIgnore=['\.bjk$', '\.b[xm]i$', '\.ms[ux]$' , '\.bd[bm]$' ,
-             \ '\.bfi$' , '\.bpk$' , '\.bsk$' , '\.bwm$' , '\.exe$' , '\.tmp$' ,
-             \ '\.exe$' , '\.ico$' , '\.lnk$' , '\.sfv$', '\~$' ]
-        let NERDTreeWinSize=40
-        noremap <C-S-e> :NERDTreeToggle<CR>
     "}}}
     "Supertab {{{
         Bundle 'ervandew/supertab'
@@ -67,7 +46,7 @@ set nocompatible "Must be first line
         Bundle 'scrooloose/syntastic'
     "}}}
     "Enhanced statusBar {{{
-    Bundle 'dickeytk/status.vim'
+        Bundle 'dickeytk/status.vim'
         "Load Fugitive
         "let g:statusline_fugitive = 1
         "No Load RVM
@@ -80,8 +59,8 @@ set nocompatible "Must be first line
         let g:statusline_fullpath = 1
     "}}}
     "Tasklist {{{
-    Bundle 'TaskList.vim'
-    "TODO, XXX and FIXME like eclipse
+        Bundle 'TaskList.vim'
+        "TODO, XXX and FIXME like eclipse
     "}}}
 "}}}
 
@@ -90,19 +69,23 @@ filetype plugin indent on "DO NOT DELETE - Plugins last line
 "GUI {{{
 if has ('gui_running')
     if has("unix")
-        set guifont=Ubuntu\ Mono:h14
+        "set guifont=Ubuntu\ Mono:h14
+        "set guifont=Monaco:h12.00
+        set guifont=Anonymous\ Pro:h12
     endif
 
     set guioptions-=T "Remoce toolbar
-    set background=dark
-    colorscheme wombat256mod
+    set bg=dark
+    "colorscheme wombat256mod
 
     if has("gui_macvim")
         let macvim_hig_shift_movement = 1 "Shift+Arrows select text
     endif
 else
-    set background=dark
+    "set bg=dark
 endif
+set bg=dark
+colorscheme wombat256mod
 "}}}
 
 "General {{{
@@ -126,10 +109,13 @@ endif
     set tabpagemax=150
 
     " Text
-    set nowrap      "wrap long lines
+    "set nowrap      "wrap long lines
+    set linebreak
     set encoding=utf-8
     syntax on "syntax highlighting
-    set ffs=unix,dos,mac "Default file types
+    "XXX: [IMPORTANTE] No se por que, pero si se habilita esta linea '%!xxd -r'
+    "deja de funcionar convenientemente
+    "set ffs=unix,dos,mac "Default file types
     try
         lang es_ES
     catch
@@ -137,7 +123,7 @@ endif
 
 
     " Tabs and indent
-    "set tabstop=4 "hard tab
+    set tabstop=4 "hard tab
     set softtabstop=4      "vim sees 4 spaces as a tab
     set shiftwidth=4       "indentation
     set expandtab          "tabs mutate into spaces, if you wanna insert "real" tabs use Ctrl-v <tab> instance
@@ -181,8 +167,12 @@ endif
     "the 'molokai' colorscheme as of this writing)
     hi clear ColorColumn
     hi link ColorColumn LineNr
+
+    "Esta linea sombrea los caracteres de las lineas que se pasan de 80
+    "au BufEnter,BufNewFile,BufRead * exec 'match Todo /\%>' . 80 . 'v.\+/'
+
     "Esta linea sompbrea el caracter 81 para marcar que se está excediendo
-    "au BufEnter,BufNewFile,BufRead * exec 'match Todo /\%' . 81 . 'v/'
+    au BufEnter,BufNewFile,BufRead * exec 'match Todo /\%' . 81 . 'v/'
 
     " CursorLine
     set cursorline "highlight the screen line of the cursor
@@ -246,10 +236,6 @@ endif
     " The default leader is '\', but many people prefer ',' as it's in a standard location
     let mapleader = ','
     
-    " Permite seleccionar texto con SHIFT+flechas
-    if has("gui_macvim")
-        let macvim_hig_shift_movement = 1
-    endif
 
     set pastetoggle=<F12>   "pastetoggle (sane indentation on pastes)
 
@@ -263,7 +249,7 @@ endif
     nnoremap <silent> <S-Space> @=(foldlevel('.')?'zA':"\<S-Space>")<CR>
 
     "noremap <F4> :silent !/usr/bin/konsole --workdir :pwd<CR>
-    nnoremap <silent> <F8> :TlistToggle<CR>
+    "nnoremap <silent> <F8> :TlistToggle<CR>
 
     " Press enter to clear the current search highlight.
     nnoremap <silent><CR> :nohlsearch<CR><CR>
@@ -283,17 +269,6 @@ endif
 
 "Filetypes {{{
 "Default section {{{
-    function! JavaScriptFold()
-"       setl foldmethod=syntax
-"        setl foldlevelstart=1
-        syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-        function! FoldText()
-            return substitute(getline(v:foldstart), '{.*', '{...}', '')
-        endfunction
-        setl foldtext=FoldText()
-    endfunction
-
     function! CustomFold()
         if has("folding")
             set foldtext=MyFoldText()
@@ -344,32 +319,6 @@ endif
     "au FileType javascript inoremap <buffer> $r return
     "au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
     "}}}
-"JavaScript section {{{
-    "au FileType javascript call JavaScriptFold()
-    "au FileType javascript setl fen
-    "au FileType javascript setl nocindent
-
-    "au FileType javascript imap <c-t> AJS.log();<esc>hi
-    "au FileType javascript imap <c-a> alert();<esc>hi
-
-    "au FileType javascript inoremap <buffer> $r return
-    "au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
-
-    "function! JavaScriptFold()
-    "   setl foldmethod=syntax
-    "    setl foldlevelstart=1
-    "    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-    "
-    "    function! FoldText()
-    "        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    "    endfunction
-    "    setl foldtext=FoldText()
-    "endfunction
-"}}}
-" Markdown section {{{
-    "Markdown to HTML  
-    "au FileType Markdown nmap <leader>md :%!/usr/local/bin/markdown --html4tags <cr>
-"}}}
 "}}}
 "Printer Options {{{
     set printoptions=header:3,number:y,left:10mm,right:10mm,top:10mm,bottom:10mm
