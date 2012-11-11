@@ -2,8 +2,8 @@
 
 "Notes {{{
     "Vim config for MacVim 7.3 (snapshot 63)
-    "@author: Pablo Escalada <diesire@gmail.com>
-    "@version: v0.1 - 05/01/2012
+    "@author: Javier Escalada <kerrigan29a@gmail.com>
+    "@version: v0.3 - 11/11/2012
 "}}}
 
 set nocompatible "Must be first line
@@ -22,9 +22,6 @@ set nocompatible "Must be first line
 "}}}
 
  "Vundle packages {{{
-    "Fugitive {{{
-        "Bundle 'tpope/vim-fugitive'
-    "}}}
     "Wombat {{{
         Bundle 'vim-scripts/wombat256.vim'
     "}}}
@@ -34,16 +31,6 @@ set nocompatible "Must be first line
         let g:indent_guides_guide_size = 1
         let g:indent_guides_space_guides = 1
         let g:indent_guides_enable_on_vim_startup = 1
-    "}}}
-    "Supertab {{{
-        "Bundle 'ervandew/supertab'
-    "}}}
-    "Neocomplcache {{{
-        "Bundle 'Shougo/neocomplcache'
-        "let g:neocomplcache_enable_at_startup = 1
-    "}}}
-    "Syntastic {{{
-        "Bundle 'scrooloose/syntastic'
     "}}}
     "Enhanced statusBar {{{
         Bundle 'dickeytk/status.vim'
@@ -57,10 +44,6 @@ set nocompatible "Must be first line
         let g:statusline_enabled = 1
         "Turn on full paths
         let g:statusline_fullpath = 1
-    "}}}
-    "Tasklist {{{
-        Bundle 'TaskList.vim'
-        "TODO, XXX and FIXME like eclipse
     "}}}
 "}}}
 
@@ -149,7 +132,7 @@ endif
     set winminwidth=1
     set splitright         "split vertically to the right.
     set splitbelow         "split horizontally below.
-    
+
     " Scroll
     set scrolloff=3        "show enough context
     set sidescrolloff=2
@@ -214,7 +197,7 @@ endif
     " Line numbers
     set number "show line numbers
     "}}}
-    
+
     " Search
     set hlsearch           "highlight search
     set incsearch          "incremental search, search as you type
@@ -233,7 +216,7 @@ endif
 "Keybindings {{{
     " The default leader is '\', but many people prefer ',' as it's in a standard location
     let mapleader = ','
-    
+
 
     set pastetoggle=<F12>   "pastetoggle (sane indentation on pastes)
 
@@ -308,14 +291,6 @@ endif
 
     "let b:foldpat=1
     call CustomFold()
-    "au FileType javascript setl fen
-    "au FileType javascript setl nocindent
-
-    "au FileType javascript imap <c-t> AJS.log();<esc>hi
-    "au FileType javascript imap <c-a> alert();<esc>hi
-
-    "au FileType javascript inoremap <buffer> $r return
-    "au FileType javascript inoremap <buffer> $f //--- PH ----------------------------------------------<esc>FP2xi
     "}}}
 "}}}
 "Printer Options {{{
