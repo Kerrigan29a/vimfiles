@@ -36,14 +36,14 @@ set nocompatible "Must be first line
         let g:indent_guides_enable_on_vim_startup = 1
     "}}}
     "Supertab {{{
-        Bundle 'ervandew/supertab'
+        "Bundle 'ervandew/supertab'
     "}}}
     "Neocomplcache {{{
-        Bundle 'Shougo/neocomplcache'
-        let g:neocomplcache_enable_at_startup = 1
+        "Bundle 'Shougo/neocomplcache'
+        "let g:neocomplcache_enable_at_startup = 1
     "}}}
     "Syntastic {{{
-        Bundle 'scrooloose/syntastic'
+        "Bundle 'scrooloose/syntastic'
     "}}}
     "Enhanced statusBar {{{
         Bundle 'dickeytk/status.vim'
@@ -76,16 +76,14 @@ if has ('gui_running')
 
     set guioptions-=T "Remoce toolbar
     set bg=dark
-    "colorscheme wombat256mod
+    colorscheme wombat256mod
 
     if has("gui_macvim")
         let macvim_hig_shift_movement = 1 "Shift+Arrows select text
     endif
 else
-    "set bg=dark
+    set bg=dark
 endif
-set bg=dark
-colorscheme wombat256mod
 "}}}
 
 "General {{{
@@ -144,7 +142,7 @@ colorscheme wombat256mod
     set novisualbell
     set linespace=0     "No extra spaces between rows
 
-    set textwidth=80
+    "set textwidth=80
 
     "Windows
     set winminheight=1     "never let a window to be less than 1px height
