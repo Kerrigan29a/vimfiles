@@ -1,5 +1,5 @@
 Installation
 =============
 
-    ln -s ~/git/vimfiles/dotvimrc .vimrc
-    ln -s ~/git/vimfiles/dotvim .vim
+    ln -s ~/git/vimfiles/dotvimrc ~/.vimrc
+    ln -s ~/git/vimfiles/dotvim ~/.vim
