@@ -21,7 +21,7 @@ set nocompatible "Must be first line
     Bundle 'gmarik/vundle'
 "}}}
 
- "Vundle packages {{{
+"Vundle packages {{{
     "Wombat {{{
         Bundle 'vim-scripts/wombat256.vim'
     "}}}
@@ -64,6 +64,16 @@ if has ('gui_running')
     "if has("gui_macvim")
     "    let macvim_hig_shift_movement = 1 "Shift+Arrows select text
     "endif
+
+    "tab navigation {{{
+    nnoremap <C-S-tab> :tabprevious<CR>
+    nnoremap <C-tab>   :tabnext<CR>
+    "nnoremap <C-t>     :tabnew<CR>
+    inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+    inoremap <C-tab>   <Esc>:tabnext<CR>i
+    "inoremap <C-t>     <Esc>:tabnew<CR>
+    "}}}
+
 else
     set bg=dark
 endif
